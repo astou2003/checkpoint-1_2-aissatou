@@ -1,0 +1,54 @@
+
+create database check1_SQL ;
+USE check1_SQL;
+CREATE TABLE clients (
+    customer_id INTEGER PRIMARY KEY ,
+    nom VARCHAR(50) NOT NULL,
+    adresse VARCHAR(100) NOT NULL);
+        SELECT * FROM clients;
+
+
+CREATE TABLE 
+  produits (product_id INTEGER PRIMARY KEY,
+    nom VARCHAR(150) NOT NULL,
+     prix DECIMAL NOT NULL CHECK (prix > 0));
+         SELECT * FROM produits;
+
+
+CREATE TABLE  commandes(
+   order_id INTEGER PRIMARY KEY,
+   customer_id INTEGER NOT NULL,
+   product_id INTEGER NOT NULL,
+   quantite INTEGER NOT NULL,
+   order_date DATE NOT NULL,
+   FOREIGN KEY (customer_id) REFERENCES clients(customer_id),
+   FOREIGN KEY (product_id) REFERENCES produits(product_id)
+   );
+	SELECT * FROM commandes;
+        
+
+INSERT INTO produits (product_id,nom, prix) values
+(1, 'Cookies', 10),
+(2, 'Candy', 5.2);
+SELECT * FROM produits;
+
+INSERT INTO clients (customer_id, nom, adresse) VALUES (1, 'Ahmed', 'Tunisia');
+INSERT INTO clients (customer_id, nom, adresse) VALUES (2, 'Coulibaly', 'Sénégal');
+INSERT INTO clients (customer_id, nom, adresse) VALUES (3, 'Hasan', 'Egypt');
+SELECT * FROM clients;
+
+INSERT INTO commandes (order_id, customer_id, product_id, quantite, order_date) VALUES
+ (1, 1, 2, 3, '2023-01-22'),
+(2, 2, 1, 10, '2023-04-14');
+SELECT * FROM commandes;
+
+UPDATE commandes SET quantite = 6 WHERE order_id = 2;
+
+DELETE FROM clients WHERE customer_id = 3;
+
+DROP TABLE commandes;
+
+
+    
+	
+    
